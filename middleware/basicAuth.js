@@ -20,14 +20,14 @@ module.exports = (req, res, next) => {
   
     users.authenticateBasic(user, pass)
       .then(valid => {
-        console.log('******** req in basic ',valid);
+        // console.log('******** req in basic ',valid);
         req.user = valid;
         if (!valid) {
           return next("Wrong pass or username");
         }
         return users.generateToken(valid);
       }).then(token => {
-        console.log('******** token in basic ',token);
+        // console.log('******** token in basic ',token);
         req.token = token;
         next();
       }).catch(err => {

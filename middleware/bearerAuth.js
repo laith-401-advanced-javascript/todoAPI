@@ -13,7 +13,6 @@ module.exports = (req, res, next) => {
     const token = bearer[1];
 
     Users.authenticateToken(token).then(validUser => {
-      console.log('validUser >>',validUser);
       req.user = { validUser, token };
       next();
     }).catch(err => next('invalid Token !'));
